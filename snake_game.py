@@ -63,6 +63,15 @@ def go_right():
 def go_left():
     snake_head.direction = "left"
 
+def reset(snake_tails):
+    global score
+    score = 0
+    snake_head.goto(0, 0)
+    snake_head.direction = ""
+    for tail in snake_tails:
+        tail.ht()
+    snake_tails.clear()
+
 
 main_screen = create_screen()
 snake_head = create_turtle("square", "green")
@@ -84,18 +93,32 @@ main_screen.onkeypress(go_left, "Left")
 main_screen.onkeypress(go_left, "a")
 main_screen.tracer(False)
 score = 0
-
+# TODO  تعریف متغیر high_score
 scoreboard = create_turtle("square", "white")
 scoreboard.goto(0, 260)
 scoreboard.ht()
-scoreboard.write(f"Score:{score}", font=("arial", 22), align="center")
 
 snake_tails = []
+def on_close():
+    global running
+    running = False
+root = main_screen._root
+root.protocol("WM_DELETE_WINDOW",on_close)
+
+
 
 running = True
 while running:
+    scoreboard.clear()
+    scoreboard.write(f"Score:{score}", font=("arial", 22),
+                     align="center")
+    # TODO  اضافه کردن highscore در متن بالا
     main_screen.update()
     if snake_head.distance(snake_food) < 20:
+        score += 1
+        # TODO
+        # اگر امتیاز از بیشترین امتیاز بزرگتر بود
+        # high_score = score
         change_position(snake_food)
         new_tail = create_turtle("square", "green")
         snake_tails.append(new_tail)
@@ -109,11 +132,13 @@ while running:
         snake_tails[0].goto(snake_head.xcor(), snake_head.ycor())
 
     if snake_head.xcor() > 290 or snake_head.xcor() < -290 or snake_head.ycor() > 290 or snake_head.ycor() < -290:
-        snake_head.goto(0, 0)
-        snake_head.direction = ""
-        for tail in snake_tails:
-            tail.ht()
-        snake_tails = []
+        reset(snake_tails)
+
 
     move()
+
+    for tail in snake_tails:
+        if tail.distance(snake_head)<20:
+            reset(snake_tails)
+
     sleep(0.2)
