@@ -18,19 +18,19 @@
 
 
 
-number = int(input("enter a number: "))
-def ordinal_suffix(number):
-    if number % 100 in(11,12,13):
-        print(f'{number}th')
-    elif number % 10 == 0:
-        print(f'{number}th')
-    elif number % 10 == 1:
-        print(f'{number}st')
-    elif number % 10 == 2:
-        print(f'{number}nd')
-    elif number % 10 == 3:
-        print(f'{number}rd')
-    else:
-        print(f'{number}th')
+# number = int(input("enter a number: "))
+# def ordinal_suffix(number):
+#     if number % 100 in(11,12,13):
+#         print(f'{number}th')
+#     elif number % 10 == 0:
+#         print(f'{number}th')
+#     elif number % 10 == 1:
+#         print(f'{number}st')
+#     elif number % 10 == 2:
+#         print(f'{number}nd')
+#     elif number % 10 == 3:
+#         print(f'{number}rd')
+#     else:
+#         print(f'{number}th')
 
-ordinal_suffix(number)
+# ordinal_suffix(number)
