@@ -24,13 +24,13 @@ word = "fox"
 # new_message = message.replace(word, new_word)
 # print(new_message)
 
-def my_count(message, word):
-    count = 0
-    for i in range(len(message)):
-        if message[i:i+len(word)] == word:
-            count += 1
-    return count
+# def my_count(message, word):
+#     count = 0
+#     for i in range(len(message)):
+#         if message[i:i+len(word)] == word:
+#             count += 1
+#     return count
 
-print(my_count(message, word))
+# print(my_count(message, word))
 
 
